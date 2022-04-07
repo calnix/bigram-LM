@@ -38,14 +38,14 @@ For our probabilistic modelling, we will use a character-level Bigram Language m
 
 ![image](https://user-images.githubusercontent.com/22549197/160108901-77e259c0-d439-46c0-b319-aa55e11831fa.png)
 
-Firstly, to validate our model, we will apply it over a common password dump, rockyou.txt. 
-It comprises of 14,344,391 passwords and we will split our training and test corpus, 80% and 20% respectively. The number of guesses the model could make was limited to 100,000 tries and 1,000,000 tries, ceteris paribus. 
-Opted to not exceed a million guesses due to computational time taken.
+To validate our model, we will apply it over a common password dump, rockyou.txt - comprising of 14,344,391 passwords.
+Number of guesses the model could make was restricted to 100,000 and 1,000,000 tries. 
+To mimic the sizes of samples we collected for each generator, we will constrict the size of training corpus to 5,000 and 10,000 respectively. 
+
+The results above speak to the efficacy of the model; on the most constrained set of inputs of 5000 sized training corpus and 100,000 tries for guesses it was able to make 5,535 correct guesses – which is more that the training corpus size. We expect this to bode well for smaller sampling sizes.
 
 The last two rows reflect the proportion split of 80% training and 20% test corpus as we plan to implement with the passwords generated from each password manager. 
-Additionally, to mimic the sizes of samples we collected for each generator, we will constrict the size of training corpus to 5,000 and 10,000 respectively. 
-The results above speak to the efficacy of the model; on the most constrained set of inputs of 5000 sized training corpus and 100,000 tries for guesses it was able to make 5,535 correct guesses – which is more that the training corpus size. 
-We expect this to bode well for smaller sampling sizes.
+
 
 # Password Generators
 
@@ -73,7 +73,7 @@ An immediate and obvious limitation is the sample size for each type of password
 We should consider the nature of randomness. 
 While the model’s generated guesses did not occur within our test corpus, it could very be possible that at some point they very well might have as per the infinite monkey theorem. 
 
-This leads us to next limitation, which is one of computational power. With more powerful hardware training could be done at a much quicker pace over larger training corpus.
 A problem with n-gram language models is that if we increase the n in n-grams it becomes computation-intensive. If we decrease the n, then long-term dependencies are not taken into consideration. 
-Perhaps a trigram (3-gram) model would have yielded better results. 
+
+Furthermore, there are newer approaches in language modelling that have had significant breakthroughs like GPT-3 which are worth exploring.
 
