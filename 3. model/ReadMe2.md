@@ -32,9 +32,7 @@ At its core, testCorpus() comprises of the above.
     
   ![image](https://user-images.githubusercontent.com/22549197/161729019-4dcad9f7-2a00-4829-be8f-9e1f66a92c75.png)
 
-Instantiate bigramlm as BigramLM class.
-
-With BigramLM's parametrized constructor, on instantiation bigramlm.Train(training_corpus) is executed. 
+Instantiate bigramlm as BigramLM class - on instantiation bigramlm.Train(training_corpus) is executed. 
 
 * Train() calls on preprocess() to tokenize each password into individual characters, with start_token: <S> & end_token: </S>
   * This is necessary to encapsulate the bigram context of the each password with clear start and end boundaries. 
@@ -43,13 +41,12 @@ With BigramLM's parametrized constructor, on instantiation bigramlm.Train(traini
   
 * Train() then proceeds to update the unigram_count and bigram_count dictionaries, via the for loops.
   * For each child list (tokenized passsword) in the training_set, for each token in each child list, 
-  * (n-1 so we end </S>)
+  * (n-1 so we end < /S >)
   * create 2-character bigram sequences
   * If token is not already present as a key in unigram_counts dictionary, add it in with value of 0.
   * If token is not already present as a key in bigram_counts dictionary, initialize it with an empty dict. 
     *   Keys in bigram_counts are individual characters
-    *   Each Key maps to a nested dictionary - which is meant to contain possible subsequent token outcomes as keys, and their bigram counts as values.
-    *   These values are initialized as 0 with the 3rd if statement.
+    *   Each key maps to a nested dictionary - which is meant to contain possible subsequent token outcomes as keys, and their bigram counts as values.
   * Increment both unigram_counts[token] & bigram_counts[token][next_token] by 1.
     * Unigram_counts will track the frequency of each unique character appearing as a starting point
     * Bigram_counts will track the frequency of a specific character appearing for some preceding character - how many times does b appear after a.  
